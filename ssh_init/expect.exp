@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+if { $argc != 3 } {
+ send_user "usage: expect scp-expect.exp file host dir\n"
+ exit
+}
+#define var
+set file [lindex $argv 0]
+set host [lindex $argv 1]
+set dir  [lindex $argv 2]
+spawn scp -P22 -r -p $file root@$host:$dir
+expect {
+        "yes/no"    {send "yes\r";exp_continue}
+        "*password" {send "服务器密码\r"}
+}
+expect eof
+exit

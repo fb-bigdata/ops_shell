@@ -1,0 +1,34 @@
+#!/usr/bin/expect -f
+if $argc<1 {
+        puts stderr "Usage: $argv0 need argv.\n"
+        exit 1
+}
+set vpnuser [lindex $argv 0]
+set path /usr/local/openvpn/easy-rsa/2.0/ 
+spawn $path/build-key $vpnuser 
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "\r"
+expect "*"
+send "y\r"
+expect "*"
+send "y\r"
+expect eof
+exit

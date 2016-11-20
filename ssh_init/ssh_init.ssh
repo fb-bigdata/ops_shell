@@ -1,0 +1,11 @@
+#!/bin/bash
+. /etc/init.d/functions
+host="192.168.10.5"
+for ip in $host;do
+ expect /shell/expect.exp /data/.ssh/ $segment$ip /root/ >>/dev/null
+ if [ $? -eq 0 ];then
+  action "$segment$ip" /bin/true
+ else
+  action "$segment$ip" /bin/false
+ fi
+done
